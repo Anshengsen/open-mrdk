@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日习惯打卡器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><span id="date-display"></span></h1>
+            <button id="reset-day-btn" class="action-btn">清除今日记录</button>
+        </header>
+
+        <main class="content-grid">
+            <div id="view-container" class="card">
+                <!-- Content will be injected here by script.js -->
+            </div>
+
+            <aside class="sidebar-panel card">
+                <header class="panel-header">
+                    <h2>习惯库</h2>
+                    <div class="header-actions">
+                        <button id="import-habits-btn" title="导入数据">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V10.5" /></svg>
+                        </button>
+                        <button id="export-habits-btn" title="导出数据">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        </button>
+                    </div>
+                    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+                </header>
+                
+                <div class="add-habit-section">
+                    <h3>添加新习惯</h3>
+                    <form id="add-habit-form">
+                        <input type="text" id="habit-name-input" placeholder="习惯名称 (如: 阅读)" required>
+                        <input type="number" id="habit-duration-input" placeholder="时长(分钟)" required min="1">
+                        <button type="submit" title="添加习惯">+</button>
+                    </form>
+                </div>
+                
+                <ul id="manage-habits-list">
+                </ul>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Templates for Views -->
+    <template id="timer-view-template">
+        <div class="timer-view">
+            <h2 class="current-habit-title"></h2>
+            <div class="timer-display">00:00</div>
+            <div class="progress-bar">
+                <div class="progress-bar-inner"></div>
+            </div>
+            <button class="stop-btn">放弃本次计时</button>
+        </div>
+    </template>
+
+    <template id="habits-list-view-template">
+        <div class="habits-today-view">
+            <h2>今日待办</h2>
+            <ul class="habits-list">
+            </ul>
+        </div>
+    </template>
+
+    <!-- Audio (External URL for simplicity, replace with local file if needed) -->
+    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+    <footer class="license-footer">
+        <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>
+    </footer>
+</body>
+</html>
